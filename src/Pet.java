@@ -6,7 +6,7 @@ public class Pet {
     private String apelido_Pet;
     private String sexo_Pet;
     private Date data_Entrada;
-    private int idade_Pet;
+    private String idade_Pet;
     private String racao_Pet;
     private int racao_Quantd_Gramas;
     private int peso_Pet;
@@ -19,7 +19,7 @@ public class Pet {
                String apelido_Pet,
                String sexo_Pet,
                Date data_Entrada,
-               int idade_Pet,
+               String idade_Pet,
                String racao_Pet,
                int racao_Quantd_Gramas,
                int peso_Pet) {
@@ -74,11 +74,11 @@ public class Pet {
         this.data_Entrada = data_Entrada;
     }
 
-    public int getIdade_Pet() {
+    public String getIdade_Pet() {
         return idade_Pet;
     }
 
-    public void setIdade_Pet(int idade_Pet) {
+    public void setIdade_Pet(String idade_Pet) {
         this.idade_Pet = idade_Pet;
     }
 
