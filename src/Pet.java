@@ -11,6 +11,9 @@ public class Pet {
     private int racao_Quantd_Gramas;
     private int peso_Pet;
 
+    public Pet() {
+    }
+
     public Pet(int id_Pet,
                String nome_Pet,
                String apelido_Pet,

@@ -3,6 +3,9 @@ public class Cliente {
     private String cpf_Cliente;
     private String telefone_Cliente;
 
+    public Cliente() {
+    }
+
     public Cliente(String nome_Cliente, String cpf_Cliente, String telefone_Cliente) {
         this.nome_Cliente = nome_Cliente;
         this.cpf_Cliente = cpf_Cliente;
