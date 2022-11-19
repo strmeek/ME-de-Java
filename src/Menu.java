@@ -32,13 +32,23 @@ public class Menu extends JFrame {
 
         button_Cadastro_Pet = new JButton();
         button_Cadastro_Pet.setText("Cadastrar Pet");
-        button_Cadastro_Pet.setBounds(10, 100, 150, 50);
+        button_Cadastro_Pet.setBounds(10, 70, 150, 50);
         this.add(button_Cadastro_Pet);
 
         button_Consulta_Pet = new JButton();
         button_Consulta_Pet.setText("Consultar Pet");
-        button_Consulta_Pet.setBounds(170, 100, 150, 50);
+        button_Consulta_Pet.setBounds(170, 70, 150, 50);
         this.add(button_Consulta_Pet);
+
+        button_Venda_Pet = new JButton();
+        button_Venda_Pet.setText("Vender Pet");
+        button_Venda_Pet.setBounds(10, 130, 150, 50);
+        this.add(button_Venda_Pet);
+
+        button_Relatorio = new JButton();
+        button_Relatorio.setText("Relatório");
+        button_Relatorio.setBounds(170, 130, 150, 50);
+        this.add(button_Relatorio);
 
         lista_Cliente = new ArrayList<Cliente>();
         lista_Pet = new ArrayList<Pet>();
@@ -75,12 +85,13 @@ public class Menu extends JFrame {
                 pet.setNome_Pet(JOptionPane.showInputDialog("Nome"));
                 pet.setApelido_Pet(JOptionPane.showInputDialog("Apelido"));
                 pet.setIdade_Pet(JOptionPane.showInputDialog("Idade"));
-                pet.setSexo_Pet(JOptionPane.showInputDialog("Sexo[M ou F]"));
+                pet.setSexo_Pet(JOptionPane.showInputDialog("Sexo[Macho ou Fêmea]"));
                 pet.setData_Entrada(new Date());
                 pet.setRacao_Pet(JOptionPane.showInputDialog("Tipo de Ração"));
                 pet.setRacao_Quantd_Gramas(Integer.parseInt(JOptionPane.showInputDialog("Qntd de Ração")));
 
                 lista_Pet.add(pet);
+
                 JOptionPane.showMessageDialog(null,
                         "Cadastro de pet realizado com sucesso!",
                         "Resultado",
@@ -94,8 +105,8 @@ public class Menu extends JFrame {
                             "Nome: " + pet.getNome_Pet() +
                                     "\n Apelido: " + pet.getApelido_Pet() +
                                     "\n Id: "+ pet.getId_Pet() +
-                                    "\n Entrada" + pet.getData_Entrada(),
-                            "Clientes",
+                                    "\n Entrada: " + pet.getData_Entrada(),
+                            "Pets",
                             JOptionPane.INFORMATION_MESSAGE);
                 }
             }
