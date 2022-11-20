@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.Date;
 public class Pet {
 
@@ -104,5 +105,13 @@ public class Pet {
 
     public void setPeso_Pet(int peso_Pet) {
         this.peso_Pet = peso_Pet;
+    }
+    public void exec_pet(Pet pet){
+        pet.setNome_Pet(JOptionPane.showInputDialog("Nome"));
+        pet.setApelido_Pet(JOptionPane.showInputDialog("Apelido"));
+        pet.setIdade_Pet(JOptionPane.showInputDialog("Idade"));
+        pet.setSexo_Pet(JOptionPane.showInputDialog("Sexo[Macho ou Fêmea]"));
+        pet.setData_Entrada(new Date());
+        pet.setRacao_Quantd_Gramas(Integer.parseInt(JOptionPane.showInputDialog("Qntd de Ração")));
     }
 }
