@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.util.Date;
 public class Pet {
+    /*Classe de Pets com todos os gets e set e contrutores*/
 
     private int id_Pet;
     private String nome_Pet;
@@ -106,6 +107,7 @@ public class Pet {
     public void setPeso_Pet(int peso_Pet) {
         this.peso_Pet = peso_Pet;
     }
+    /*Função utilizada no cadastro de Pets*/
     public void exec_pet(Pet pet){
         pet.setNome_Pet(JOptionPane.showInputDialog("Nome"));
         pet.setApelido_Pet(JOptionPane.showInputDialog("Apelido"));

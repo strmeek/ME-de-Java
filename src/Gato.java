@@ -1,6 +1,7 @@
 import java.util.Date;
 
 public class Gato extends Pet{
+    /*SuperClasse de Pets com todos os gets e set e contrutores de Gato*/
     private boolean domesticado;
 
     public Gato() {

@@ -1,4 +1,5 @@
 public class Cliente {
+    /*Classe de Cliente com todos os gets e set e contrutores*/
     private int id_Cliente;
     private String nome_Cliente;
     private String cpf_Cliente;

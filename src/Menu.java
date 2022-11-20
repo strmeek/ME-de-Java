@@ -5,17 +5,20 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Menu extends JFrame {
+    /*Criação dos Botões*/
     private JButton button_Cadastro_Cliente;
     private JButton button_Consulta_Cliente;
     private JButton button_Cadastro_Pet;
     private JButton button_Consulta_Pet;
     private JButton button_Venda_Pet;
     private JButton button_Relatorio;
+    /*Criação dos Arrays*/
     private ArrayList<Cliente> lista_Cliente;
     private ArrayList<Pet> lista_Pet;
     private ArrayList<String> lista_Venda;
 
     public Menu() {
+        /*Geração do FrontEnd*/
         this.setTitle("Loja");
         setBounds(0,0,700,500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -55,6 +58,7 @@ public class Menu extends JFrame {
         lista_Pet = new ArrayList<Pet>();
         lista_Venda = new ArrayList<String>();
 
+        /*Funcionalidade: Cadastro de Clientes*/
         button_Cadastro_Cliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 Cliente cliente = new Cliente();
@@ -69,6 +73,7 @@ public class Menu extends JFrame {
                         JOptionPane.INFORMATION_MESSAGE);
             }
         });
+        /*Funcionalidade: Consulta de Clientes*/
         button_Consulta_Cliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 for (Cliente cliente : lista_Cliente) {
@@ -76,19 +81,22 @@ public class Menu extends JFrame {
                             "ID: " + cliente.getId_Cliente() +
                             "\n Nome: " + cliente.getNome_Cliente() +
                                     "\n CPF: " + cliente.getCpf_Cliente() +
-                                    "\n Telefone "+ cliente.getTelefone_Cliente(),
+                                    "\n Telefone: "+ cliente.getTelefone_Cliente(),
                             "Clientes",
                             JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });
+        /*Funcionalidade: Cadastro de Pets*/
         button_Cadastro_Pet.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
+                /*Define o tipo de ração e divide os pets entre Gato,Cachorro e Passaro*/
                 String question_1 = JOptionPane.showInputDialog("Ração para:" +
                         "\n [Cachorro / Gato / Passaro]");
 
                 if (question_1.equalsIgnoreCase("gato")) {
                     Gato pet = new Gato();
+                    pet.setRacao_Pet("Gato");
                     String question_2 = JOptionPane.showInputDialog("é domesticado?");
                     if (question_2.equalsIgnoreCase("sim")) {
                         pet.setDomesticado(true);
@@ -104,6 +112,7 @@ public class Menu extends JFrame {
                 }
                 else if (question_1.equalsIgnoreCase("passaro")) {
                     Passaro pet = new Passaro();
+                    pet.setRacao_Pet("Passaro");
                     String question_2 = JOptionPane.showInputDialog("Asas cortadas?");
                     if (question_2.equalsIgnoreCase("sim")) {
                         pet.setAsa_Cortada(true);
@@ -119,6 +128,7 @@ public class Menu extends JFrame {
                 }
                 else {
                     Cachorro pet = new Cachorro();
+                    pet.setRacao_Pet("Cachorro");
                     pet.setPelo(JOptionPane.showInputDialog("Tipo de Pelo:" +
                             "\n [sem pelo / raso / curto / médio / longo]"));
                     pet.exec_pet(pet);
@@ -132,6 +142,7 @@ public class Menu extends JFrame {
                         JOptionPane.INFORMATION_MESSAGE);
             }
         });
+        /*Funcionalidade: Consulta de Pets*/
         button_Consulta_Pet.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 for (Pet pet : lista_Pet) {
@@ -145,8 +156,9 @@ public class Menu extends JFrame {
                 }
             }
         });
+        /*Funcionalidade: Venda de Pets*/
         button_Venda_Pet.addActionListener(new ActionListener() {
-
+            /*Escolhe o pet que vai ser vendido*/
             public void actionPerformed(ActionEvent evt) {
                 int id_do_Pet = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do Pet"));
                 Pet chosen_Pet = lista_Pet.get(id_do_Pet - 1);
@@ -157,7 +169,7 @@ public class Menu extends JFrame {
                                 "\n Idade:" + chosen_Pet.getIdade_Pet(),
                         "Conferência",
                         JOptionPane.INFORMATION_MESSAGE);
-
+                /*Escolhe o cliente comprador*/
                 int id_do_Cliente = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do Cliente"));
                 Cliente comprador = lista_Cliente.get(id_do_Cliente - 1);
                 JOptionPane.showMessageDialog(null,
@@ -166,7 +178,7 @@ public class Menu extends JFrame {
                         "\n Telefone: " + comprador.getTelefone_Cliente(),
                         "Conferência Cliente",
                         JOptionPane.INFORMATION_MESSAGE);
-
+                /*Confirma tudo e salva numa lista de vendas, e remove o pet da lista de pets*/
                 Date data_Venda = new Date();
                 lista_Venda.add(chosen_Pet + comprador.getCpf_Cliente() + data_Venda);
                 JOptionPane.showMessageDialog(null,
@@ -179,6 +191,7 @@ public class Menu extends JFrame {
                         lista_Pet.remove(chosen_Pet.getId_Pet() - 1);
             }
         });
+        /*Funcionalidade: Relatório com as quantidades de Ração por animal*/
         button_Relatorio.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 ArrayList<Integer> racao_Gato;
@@ -188,7 +201,8 @@ public class Menu extends JFrame {
                 racao_Gato = new ArrayList<>();
                 racao_Passaro = new ArrayList<>();
                 racao_Cachorro = new ArrayList<>();
-
+                /*Separa os animais de acordo com sua classe em outras 3 listas
+                * contendo a quantidade de raçoes deles*/
                 for (Pet pet : lista_Pet) {
                     if (pet.getClass().equals(Gato.class)){
                         racao_Gato.add(pet.getRacao_Quantd_Gramas());
@@ -199,6 +213,7 @@ public class Menu extends JFrame {
                     else {
                         racao_Cachorro.add(pet.getRacao_Quantd_Gramas());
                     }
+                    /*Soma as quantidades de todos os animais*/
                 }
                 int total_Gato = 0;
                 for (int i = 0; i < racao_Gato.size(); i++) {
@@ -215,11 +230,12 @@ public class Menu extends JFrame {
                     int x = racao_Cachorro.get(i);
                     total_Cachorro += x;
                 }
+                /* Resultado é mostrado na tela*/
                 JOptionPane.showMessageDialog(null,
                         "Gato: " + total_Gato +
                         "\n Passaro: " + total_Passaro +
                         "\n Cachorro: " + total_Cachorro
-                        ,"Total de Ração",
+                        ,"Total de Ração para a semana",
                         JOptionPane.INFORMATION_MESSAGE);
             }
         });

@@ -1,6 +1,7 @@
 import java.util.Date;
 
 public class Passaro extends Pet{
+    /*SuperClasse de Pets com todos os gets e set e contrutores de Pássaro*/
     private boolean asa_Cortada;
 
     public Passaro() {

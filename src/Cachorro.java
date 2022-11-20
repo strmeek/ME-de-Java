@@ -1,6 +1,7 @@
 import java.util.Date;
 
 public class Cachorro extends Pet{
+    /*SuperClasse de Pets com todos os gets e set e contrutores de Cachorro*/
     private String pelo;
 
     public Cachorro() {
