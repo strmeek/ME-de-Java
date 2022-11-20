@@ -180,7 +180,7 @@ public class Menu extends JFrame {
                         JOptionPane.INFORMATION_MESSAGE);
                 /*Confirma tudo e salva numa lista de vendas, e remove o pet da lista de pets*/
                 Date data_Venda = new Date();
-                lista_Venda.add(chosen_Pet + comprador.getCpf_Cliente() + data_Venda);
+                lista_Venda.add(chosen_Pet + "\n" + comprador.getCpf_Cliente() + "\n" + data_Venda);
                 JOptionPane.showMessageDialog(null,
                         "Pet: " + chosen_Pet.getNome_Pet() +
                                 "\b" + chosen_Pet.getId_Pet() +
