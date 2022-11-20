@@ -62,7 +62,7 @@ public class Menu extends JFrame {
         button_Cadastro_Cliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 Cliente cliente = new Cliente();
-                cliente.setId_Cliente(lista_Venda.size()+1);
+                cliente.setId_Cliente(lista_Cliente.size() + 1);
                 cliente.setNome_Cliente(JOptionPane.showInputDialog("Nome"));
                 cliente.setCpf_Cliente(JOptionPane.showInputDialog("CPF"));
                 cliente.setTelefone_Cliente(JOptionPane.showInputDialog("Telefone"));
