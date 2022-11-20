@@ -1,4 +1,5 @@
 public class Cliente {
+    private int id_Cliente;
     private String nome_Cliente;
     private String cpf_Cliente;
     private String telefone_Cliente;
@@ -6,10 +7,19 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String nome_Cliente, String cpf_Cliente, String telefone_Cliente) {
+    public Cliente(int id_Cliente, String nome_Cliente, String cpf_Cliente, String telefone_Cliente) {
+        this.id_Cliente = id_Cliente;
         this.nome_Cliente = nome_Cliente;
         this.cpf_Cliente = cpf_Cliente;
         this.telefone_Cliente = telefone_Cliente;
+    }
+
+    public int getId_Cliente() {
+        return id_Cliente;
+    }
+
+    public void setId_Cliente(int id_Cliente) {
+        this.id_Cliente = id_Cliente;
     }
 
     public String getNome_Cliente() {

@@ -13,6 +13,7 @@ public class Menu extends JFrame {
     private JButton button_Relatorio;
     private ArrayList<Cliente> lista_Cliente;
     private ArrayList<Pet> lista_Pet;
+    private ArrayList<String> lista_Venda;
 
     public Menu() {
         this.setTitle("Loja");
@@ -52,10 +53,12 @@ public class Menu extends JFrame {
 
         lista_Cliente = new ArrayList<Cliente>();
         lista_Pet = new ArrayList<Pet>();
+        lista_Venda = new ArrayList<String>();
 
         button_Cadastro_Cliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 Cliente cliente = new Cliente();
+                cliente.setId_Cliente(lista_Venda.size()+1);
                 cliente.setNome_Cliente(JOptionPane.showInputDialog("Nome"));
                 cliente.setCpf_Cliente(JOptionPane.showInputDialog("CPF"));
                 cliente.setTelefone_Cliente(JOptionPane.showInputDialog("Telefone"));
@@ -70,7 +73,8 @@ public class Menu extends JFrame {
             public void actionPerformed(ActionEvent evt) {
                 for (Cliente cliente : lista_Cliente) {
                     JOptionPane.showMessageDialog(null,
-                            "Nome: " + cliente.getNome_Cliente() +
+                            "ID: " + cliente.getId_Cliente() +
+                            "\n Nome: " + cliente.getNome_Cliente() +
                                     "\n CPF: " + cliente.getCpf_Cliente() +
                                     "\n Telefone "+ cliente.getTelefone_Cliente(),
                             "Clientes",
@@ -109,6 +113,40 @@ public class Menu extends JFrame {
                             "Pets",
                             JOptionPane.INFORMATION_MESSAGE);
                 }
+            }
+        });
+        button_Venda_Pet.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent evt) {
+                int id_do_Pet = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do Pet"));
+                Pet chosen_Pet = lista_Pet.get(id_do_Pet);
+                JOptionPane.showMessageDialog(null,
+                        "\n Nome: " + chosen_Pet.getNome_Pet() +
+                        "\n Apelido:" + chosen_Pet.getApelido_Pet() +
+                        "\n Sexo: " + chosen_Pet.getSexo_Pet() +
+                                "\n Idade:" + chosen_Pet.getIdade_Pet(),
+                        "Conferência",
+                        JOptionPane.INFORMATION_MESSAGE);
+
+                int id_do_Cliente = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do Cliente"));
+                Cliente comprador = lista_Cliente.get(id_do_Cliente);
+                JOptionPane.showMessageDialog(null,
+                        "Nome: " + comprador.getNome_Cliente() +
+                        "\n CPF: " + comprador.getCpf_Cliente() +
+                        "\n Telefone: " + comprador.getTelefone_Cliente(),
+                        "Conferência Cliente",
+                        JOptionPane.INFORMATION_MESSAGE);
+
+                Date data_Venda = new Date();
+                lista_Venda.add(chosen_Pet + comprador.getCpf_Cliente() + data_Venda);
+                JOptionPane.showMessageDialog(null,
+                        "Pet: " + chosen_Pet.getNome_Pet() +
+                                " " + chosen_Pet.getId_Pet() +
+                        "\n Comprador: " + comprador.getCpf_Cliente() +
+                        "\n Data da Venda: " + data_Venda,
+                        "Venda Concluida!",
+                        JOptionPane.INFORMATION_MESSAGE );
+                        lista_Pet.remove(chosen_Pet.getId_Pet());
             }
         });
     }
